@@ -1,3 +1,5 @@
+import { assetPath } from '../utils/assetPath';
+
 export interface AccountCaseStudy {
   id: string;
   name: string;
@@ -52,7 +54,7 @@ export interface Project {
   customSections?: { title: string; content: string; icon?: string }[];
 }
 
-export const accounts: AccountCaseStudy[] = [
+const accountData: AccountCaseStudy[] = [
   {
     id: "humva-tiktok",
     name: "Humva",
@@ -362,7 +364,7 @@ export const accounts: AccountCaseStudy[] = [
   }
 ];
 
-export const projects: Project[] = [
+const projectData: Project[] = [
   {
     id: "humva-zootopia",
     title: "Humva Promotional Video – Zootopia Style",
@@ -494,6 +496,27 @@ export const projects: Project[] = [
     coverFit: "contain"
   }
 ];
+
+const withAssetPath = (path?: string) => (path ? assetPath(path) : path);
+
+const withAccountAssets = (account: AccountCaseStudy): AccountCaseStudy => ({
+  ...account,
+  coverImage: withAssetPath(account.coverImage),
+  viralVideos: account.viralVideos?.map((video) => ({
+    ...video,
+    thumbnail: withAssetPath(video.thumbnail),
+  })),
+});
+
+const withProjectAssets = (project: Project): Project => ({
+  ...project,
+  coverImage: withAssetPath(project.coverImage),
+  showcaseVideo: withAssetPath(project.showcaseVideo),
+  mockups: project.mockups?.map((mockup) => assetPath(mockup)),
+});
+
+export const accounts: AccountCaseStudy[] = accountData.map(withAccountAssets);
+export const projects: Project[] = projectData.map(withProjectAssets);
 
 export const skills = {
   aigc: ["Midjourney", "Google Flow", "Dreamina", "Nano Banana", "VEED.io", "Luma AI"],

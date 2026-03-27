@@ -4,6 +4,7 @@ import { Download, FileText, Calendar, MapPin, Mail, Award, BookOpen, Star, User
 import { experiences, skills, education, projects } from '../data/portfolioData';
 import { AnimatePresence } from 'motion/react';
 import { Project } from '../data/portfolioData';
+import { assetPath } from '../utils/assetPath';
 
 export const Resume = () => {
   return (
@@ -22,7 +23,7 @@ export const Resume = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
-              href="/resume-en.pdf" 
+              href={assetPath('/resume-en.pdf')} 
               download 
               className="btn-primary flex items-center space-x-2 w-full sm:w-fit justify-center"
             >
@@ -30,7 +31,7 @@ export const Resume = () => {
               <span>English PDF</span>
             </a>
             <a 
-              href="/resume-zh.pdf" 
+              href={assetPath('/resume-zh.pdf')} 
               download 
               className="btn-secondary flex items-center space-x-2 w-full sm:w-fit justify-center"
             >

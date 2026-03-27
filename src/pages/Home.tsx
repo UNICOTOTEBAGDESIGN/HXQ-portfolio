@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, Sparkles, TrendingUp, Video, Layers } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { accounts, projects } from '../data/portfolioData';
+import { assetPath } from '../utils/assetPath';
 
 const Hero = () => {
   const keywords = [
@@ -72,7 +73,7 @@ const Hero = () => {
           className="w-full max-w-[320px] md:max-w-[400px] lg:w-[400px] aspect-square rounded-[2.5rem] overflow-hidden border border-accent/20 shadow-2xl bg-card flex-shrink-0 lg:mt-2"
         >
           <img
-            src="/profile.JPG"
+            src={assetPath('/profile.JPG')}
             alt="Xinqi (Christina) Huang"
             className="w-full h-full object-cover"
             onError={(e) => {
